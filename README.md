@@ -21,7 +21,7 @@ npm run build
 
 
 ### 使用插件  
-* vue vue-router vuex vant fastclick axios 
+* vue vue-router vuex vant fastclick axios postcss-px-to-viewport
 * better-scroll
 * mouse-wheel observe-dom observe-image
 
