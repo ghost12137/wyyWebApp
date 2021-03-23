@@ -6,6 +6,7 @@ const Player = () => import('views/player/Player');
 const Profile = () => import('views/profile/Profile');
 const Sing = () => import('views/sing/Sing');
 const Yuncun = () => import('views/yuncun/Yuncun');
+const Login = () => import('views/login/Login');
 
 
 Vue.use(VueRouter)
@@ -39,6 +40,11 @@ const routes = [
    path: '/yuncun',
    name: 'yuncun',
    component: Yuncun,
+ },
+ {//登录
+  path: '/login',
+  name: 'login',
+  component: Login
  },
 ]
 

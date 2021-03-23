@@ -1,7 +1,7 @@
 <template>
   <div id="find">
     <nav-bar class="nav-bar">
-      <div slot="left">
+      <div slot="left" @click="leftPopClick" class="left-pop">
         <img src="~assets/img/navbar/category.svg" alt="" />
       </div>
       <div slot="center">
@@ -9,7 +9,15 @@
       </div>
       <div slot="right"><img src="~assets/img/navbar/micro.svg" alt="" /></div>
     </nav-bar>
-    <scroll class="wrapper" ref="scroll">
+    <!-- 个人信息等左弹出层 -->
+    <van-popup
+      class="left-van-popup"
+      position="left"
+      :style="{height: '100vh',width: '70%'}" 
+      v-model="leftPopUp">
+      <left-pop @logoutBtnClick="changePopStatus"/>
+    </van-popup>
+    <scroll class="find-wrapper">
       <!-- 首页轮播图 -->
       <find-swiper :banners="banners" />
       <!-- 圆形按钮 -->
@@ -81,6 +89,8 @@ import MusicCalendar from './childComps/MusicCalendar';
 import NewMusicEtc from './childComps/NewMusicEtc';
 import TwentyHourPlayer from './childComps/TwentyHourPlayer';
 
+import LeftPop from '../leftpop/LeftPop.vue';
+
 import { getFindMultiData, getFindCircleData } from 'network/find';
 import { Toast } from 'vant';
 
@@ -99,10 +109,12 @@ export default {
     MusicCalendar,
     NewMusicEtc,
     TwentyHourPlayer,
+    LeftPop,
   },
   data() {
     return {
       searchPlaceHolder: '晚风 最近有点火哦',
+      leftPopUp: false,   //个人信息左弹出层显示
       banners: [],  //首页轮播图
       circleBtns: [],//首页圆形按钮
       recommendMusicList: [], //首页推荐歌单
@@ -145,6 +157,16 @@ export default {
     /**
      * 事件监听相关方法
      */
+    //点击左上角更多左弹出层显示事件
+    leftPopClick() {
+      // console.log('leftclick');
+      this.leftPopUp = true;
+    },
+    //监听到退出点击事件，隐藏弹出层
+    changePopStatus() {
+      this.leftPopUp = false;
+    },
+    //新歌、新碟标题点击事件
     newMusicDJClick(title) {
       this.newMusicEtcTitle = title;
     },
@@ -222,8 +244,11 @@ export default {
   height: calc(100vh - 50px);
   overflow: hidden;
 }
-.wrapper {
-  overflow: hidden;
+.left-van-popup {
+  background-color: #f5f5f5;
+}
+.find-wrapper {
+  /* overflow: hidden; */
   width: 100%;
   /* margin: 0 auto; */
   background-color: #f5f5f5;

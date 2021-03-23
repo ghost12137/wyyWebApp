@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: {
+  /* plugins: {
     autoprefixer: {},
     "postcss-px-to-viewport": {
       unitToConvert: "px", //需要转换的单位，默认为"px"
@@ -17,5 +17,5 @@ module.exports = {
       replace: true, //是否直接更换属性值，而不添加备用属性
       exclude: [/(\/|\\)(node_modules)(\/|\\)/, ], //忽略某些文件夹下的文件或特定文件，例如 'node_modules' 下的文件
     }
-  }
+  } */
 }

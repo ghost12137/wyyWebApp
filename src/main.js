@@ -3,7 +3,17 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import FastClick from 'fastclick';
-import {Toast, Swipe, SwipeItem, Lazyload } from 'vant';
+import {
+  Toast,
+  Swipe,
+  SwipeItem,
+  Lazyload,
+  Popup,
+  Cell,
+  CellGroup,
+  Button,
+  Field
+} from 'vant';
 
 
 
@@ -18,6 +28,11 @@ FastClick.attach(document.body);
 Vue.use(Toast);
 Vue.use(Swipe);
 Vue.use(SwipeItem);
+Vue.use(Popup);
+Vue.use(Cell);
+Vue.use(CellGroup);
+Vue.use(Button);
+Vue.use(Field);
 //使用懒加载图片
 Vue.use(Lazyload, {
   // 占位图

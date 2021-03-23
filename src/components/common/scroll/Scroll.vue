@@ -47,6 +47,8 @@ export default {
     } else {
       this.scorll.refresh();
     }
+
+    // console.log(this.scorll);
   },
 }
 </script>
