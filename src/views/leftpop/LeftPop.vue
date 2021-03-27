@@ -74,7 +74,7 @@ export default {
   computed: {
     // 登录后获取用户头像
     userHeadUrl() {
-      let url = this.$store.state.userProfile!=null? this.$store.state.userProfile.avatarUrl : require('../../assets/img/leftpopup/user.svg');
+      let url = this.$store.state.userProfile!=null? this.$store.state.userProfile.avatarUrl : require('assets/img/leftpopup/user.svg');
       return url;
     },
     // 登录后获取用户昵称

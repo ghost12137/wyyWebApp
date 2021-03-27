@@ -183,7 +183,7 @@ export default {
       getFindMultiData()
         .then(res => {
           if (res.code == 200) {
-            console.log(res.data);
+            console.log("resdata in find：", res.data);
             //将请求的数据放入data中
             //轮播图
             this.banners = res.data.blocks[0].extInfo.banners;

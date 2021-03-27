@@ -2,7 +2,7 @@
   <tab-bar id="tab-bar">
     <tab-bar-item path="/find">
       <img slot="item-icon" src="~assets/img/tabbar/find/find.svg" alt="">
-      <img slot="item-icon-active" src="~assets/img/tabbar/find/find.svg" alt="">
+      <img slot="item-icon-active" src="~assets/img/tabbar/find/find_active.svg" alt="">
       <div slot="item-text">发现</div>
     </tab-bar-item>
     <tab-bar-item path="/player">

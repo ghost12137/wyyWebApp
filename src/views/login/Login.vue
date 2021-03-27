@@ -82,8 +82,13 @@ export default {
           }
         })
           .catch(err => {
-            Toast.fail('登陆失败');
+            // Toast.fail('登陆失败');
             console.log('loginError in login: ', err);
+            const statusCode = err.response.status;
+            // console.log(statusCode);
+            if (statusCode == 501) {
+              this.phoneErrorMsg = '手机号错误!';
+            }
           })
       }
     },

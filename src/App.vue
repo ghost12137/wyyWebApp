@@ -12,6 +12,9 @@ export default {
   components: {
     MainTabBar
   },
+  created() {
+    this.$store.getters.isLogin
+  },
 }
 </script>
 

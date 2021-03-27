@@ -26,15 +26,20 @@ export default {
       type: Boolean,
       default: false
     },
+    isListen: {
+      type: Number,
+      default: 0
+    },
   },
   mounted() {
     //创建scroll对象
     if (!this.scorll) {
       this.scorll = new BScroll(this.$refs.wrapper, {
-        probeType: 0,   //是否监听滚动条
+        probeType: this.isListen,   //是否监听滚动条
         scrollX: this.scrollByX,  //横向滚动
         scrollY: !this.scrollByX, //纵向滚动
-        click: true,              //支持鼠标点击
+        click: false,              //支持鼠标点击
+        preventDefault: false,
         mouseWheel: {
           speed: 20,
           invert: false,
@@ -47,8 +52,28 @@ export default {
     } else {
       this.scorll.refresh();
     }
+    //监听滚动位置
+    this.scorll.on('scroll', (position) => {
+      this.$emit('scroll', position);
+    });
 
     // console.log(this.scorll);
+    this.scorll.refresh();
+  },
+  methods: {
+    scrollTo(x, y, time=500) {
+      this.scroll && this.scroll.scrollTo(x,y, time);
+    },
+    finishPullUp() {
+      this.scroll && this.scroll.finishPullUp();
+    },
+    refresh() {
+      // console.log('-----------');
+      this.scroll && this.scroll.refresh();
+    },
+    getScrollY() {
+      return this.scroll ? this.scroll.y : 0;
+    },
   },
 }
 </script>

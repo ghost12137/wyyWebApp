@@ -8,7 +8,8 @@ export default new Vuex.Store({
     token: '',
     userAccount: null,
     userProfile: null,
-    isLogin: false
+    isLogin: false,
+    uid: ''
   },
   mutations: {
     setUserStatus(state, userMsg) {
@@ -17,17 +18,21 @@ export default new Vuex.Store({
         state.token = userMsg.token;
         state.userAccount = userMsg.userAccount;
         state.userProfile = userMsg.userProfile;
+        state.uid = userMsg.userProfile.userId;
         sessionStorage.setItem('token', state.token);
         sessionStorage.setItem('isLogin', state.isLogin);
-        sessionStorage.setItem('userAccount', state.userAccount);
-        sessionStorage.setItem('userProfile', state.userProfile);
+        sessionStorage.setItem('uid', state.uid);
+        sessionStorage.setItem('userAccount', JSON.stringify(state.userAccount));
+        sessionStorage.setItem('userProfile', JSON.stringify(state.userProfile));
       } else if (userMsg == null) {
         sessionStorage.removeItem('isLogin');
         sessionStorage.removeItem('token');
+        sessionStorage.removeItem('uid');
         sessionStorage.removeItem('userAccount');
         sessionStorage.removeItem('userProfile');
         state.isLogin = false,
         state.token = '';
+        state.uid = '';
         state.userAccount = null;
         state.userProfile = null;
       }
@@ -45,8 +50,10 @@ export default new Vuex.Store({
       if (!state.isLogin) {
         state.isLogin = sessionStorage.getItem('isLogin');
         state.token = sessionStorage.getItem('token');
-        state.userAccount = sessionStorage.getItem('userAccount');
-        state.userProfile = sessionStorage.getItem('userProfile');
+        state.uid = sessionStorage.getItem('uid');
+        state.userAccount = JSON.parse(sessionStorage.getItem('userAccount'));
+        state.userProfile = JSON.parse(sessionStorage.getItem('userProfile'));
+        // console.log(state.userProfile);
       }
       return state.isLogin;
     }

@@ -1,13 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+// 底部导航栏
 const Find = () => import('views/find/Find');
 const Player = () => import('views/player/Player');
 const Profile = () => import('views/profile/Profile');
 const Sing = () => import('views/sing/Sing');
 const Yuncun = () => import('views/yuncun/Yuncun');
+// 登录
 const Login = () => import('views/login/Login');
-
+//每日推荐
+const DailyRecommend = () => import('views/dailyrecommend/DailyRecommend');
 
 Vue.use(VueRouter)
 
@@ -45,6 +48,11 @@ const routes = [
   path: '/login',
   name: 'login',
   component: Login
+ },
+ { //每日推荐
+   path: '/dailyrecommend',
+   name: 'dailyrecommend',
+   component: DailyRecommend
  },
 ]
 

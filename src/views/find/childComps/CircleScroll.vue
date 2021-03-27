@@ -1,7 +1,10 @@
 <template>
   <scroll class="circle-scroll" :scrollByX="scrollByX">
     <div class="content">
-      <div v-for="(item, index) in circleBtns" :key="index" class="scroll-item">
+      <div v-for="(item, index) in circleBtns" 
+        :key="item.id"
+        @click.stop="circleClick(index)"
+        class="scroll-item">
         <img v-lazy="item.iconUrl" />
         <span>{{item.name}}</span>
       </div>
@@ -11,6 +14,7 @@
 
 <script>
 import Scroll from 'components/common/scroll/Scroll'
+import { Toast } from 'vant';
 
 export default {
   name: 'CircleScroll',
@@ -20,6 +24,7 @@ export default {
   data() {
     return {
       scrollByX: true, //判断是否横向滚动
+      currentIndex: -1, //点击的index
     };
   },
   props: {
@@ -28,6 +33,15 @@ export default {
       default() {
         return [];
       },
+    },
+  },
+  methods: {
+    circleClick(index) {
+      // this.$emit('circleClick', index);
+      if (!this.$store.state.isLogin)
+        Toast.fail('请先登录');
+      else 
+        this.$router.replace('/dailyrecommend');
     },
   },
 }

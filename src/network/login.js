@@ -1,8 +1,8 @@
 import {request} from './request';
 
+let timeStamp = (new Date()).valueOf();
 //登陆
 export function login(params) {
-  let timeStamp = (new Date()).valueOf();
   return request({
     url: '/login/cellphone?timestamp=' + timeStamp,
     method: 'POST',
@@ -12,6 +12,7 @@ export function login(params) {
 //退出
 export function logOut() {
   return request({
-    url: '/logout'
+    url: '/logout?timestamp='+ timeStamp,
+    method: 'POST'
   });
 }
