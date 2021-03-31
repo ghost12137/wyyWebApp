@@ -11,6 +11,8 @@ const Yuncun = () => import('views/yuncun/Yuncun');
 const Login = () => import('views/login/Login');
 //每日推荐
 const DailyRecommend = () => import('views/dailyrecommend/DailyRecommend');
+//歌单广场
+const SongSquare = () => import('views/songSquare/SongSquare');
 
 Vue.use(VueRouter)
 
@@ -53,6 +55,11 @@ const routes = [
    path: '/dailyrecommend',
    name: 'dailyrecommend',
    component: DailyRecommend
+ },
+ { //歌单广场
+   path: '/songsquare',
+   name: 'songsquare',
+   component: SongSquare
  },
 ]
 

@@ -37,11 +37,21 @@ export default {
   },
   methods: {
     circleClick(index) {
-      // this.$emit('circleClick', index);
+      this.$emit('circleClick', index);
       if (!this.$store.state.isLogin)
         Toast.fail('请先登录');
-      else 
-        this.$router.replace('/dailyrecommend');
+      else {
+        switch (index) {
+          case 0:
+            this.$router.replace('/dailyrecommend');
+            break;
+          case 1:
+            this.$router.replace('/songsquare');
+            break;
+          default:
+            break;
+        }
+      }
     },
   },
 }

@@ -4,7 +4,7 @@ export function request(config) {
   const instance = axios.create({
     baseURL: 'http://localhost:9000/', //http://ghost12138.cn1.utools.club/     //http://localhost:9000/
     timeout: 5000,
-    
+    withCredentials: true
   });
   //axios拦截器
   //相应拦截器

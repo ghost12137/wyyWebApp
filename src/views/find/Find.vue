@@ -185,18 +185,28 @@ export default {
           if (res.code == 200) {
             console.log("resdata in find：", res.data);
             //将请求的数据放入data中
-            //轮播图
-            this.banners = res.data.blocks[0].extInfo.banners;
-            //推荐歌单
-            this.recommendMusicList = res.data.blocks[1].creatives;
-            //推荐音乐视频
+            for (let i = 0; i < res.data.blocks.length; ++i) {
+              switch (i) {
+                case 0: 
+                  //轮播图
+                  this.banners = res.data.blocks[0].extInfo.banners;
+                  break;
+                case 1:
+                  //推荐歌单
+                  this.recommendMusicList = res.data.blocks[1].creatives;
+                  break;
+                case 3:
+                  //私人订制
+                  this.personalTailor = res.data.blocks[3];
+                  break;
+              }
+            }
+            /* //推荐音乐视频
             this.recommendVedio = res.data.blocks[2].extInfo;
             //雷达歌单
             this.radarSongList = res.data.blocks[3].creatives;
             //音乐日历
             this.musicCalendar = res.data.blocks[4];
-            //私人订制
-            this.personalTailor = res.data.blocks[5];
             //专属场景歌单
             this.exclusiveSceneSongList = res.data.blocks[6].creatives;
             //新歌、新碟、数字专辑
@@ -206,7 +216,7 @@ export default {
             //播客合集
             this.playerCollection = res.data.blocks[10].creatives;
             //视频合集
-            this.vedioCollection = res.data.blocks[11].creatives;
+            this.vedioCollection = res.data.blocks[11].creatives; */
             Toast.clear();
           }
         })
