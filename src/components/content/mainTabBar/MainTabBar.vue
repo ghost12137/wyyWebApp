@@ -15,7 +15,7 @@
       <img slot="item-icon-active" src="~assets/img/tabbar/profile/profile_active.svg" alt="">
       <div slot="item-text">我的</div>
     </tab-bar-item>
-    <tab-bar-item path="/sing">
+    <!-- <tab-bar-item path="/sing">
       <img slot="item-icon" src="~assets/img/tabbar/sing/sing.svg" alt="">
       <img slot="item-icon-active" src="~assets/img/tabbar/sing/sing_active.svg" alt="">
       <div slot="item-text">K歌</div>
@@ -24,7 +24,7 @@
       <img slot="item-icon" src="~assets/img/tabbar/yuncun/yuncun.svg" alt="">
       <img slot="item-icon-active" src="~assets/img/tabbar/yuncun/yuncun_active.svg" alt="">
       <div slot="item-text">云村</div>
-    </tab-bar-item>
+    </tab-bar-item> -->
   </tab-bar>
 </template>
 

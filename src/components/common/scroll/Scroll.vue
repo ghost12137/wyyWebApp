@@ -18,7 +18,7 @@ export default {
   name: 'Scroll',
   data() {
     return {
-      scorll: null,
+      scroll: null,
     };
   },
   props: {
@@ -30,11 +30,15 @@ export default {
       type: Number,
       default: 0
     },
+    pullUpLoad: {
+      type: Boolean,
+      default: false
+    },
   },
   mounted() {
     //创建scroll对象
-    if (!this.scorll) {
-      this.scorll = new BScroll(this.$refs.wrapper, {
+    if (!this.scroll) {
+      this.scroll = new BScroll(this.$refs.wrapper, {
         probeType: this.isListen,   //是否监听滚动条
         scrollX: this.scrollByX,  //横向滚动
         scrollY: !this.scrollByX, //纵向滚动
@@ -47,18 +51,26 @@ export default {
         },
         observeDOM: true,
         observeImage: true,
+        pullUpLoad: this.pullUpLoad,
       });
-      this.scorll.hasHorizontalScroll = this.scrollByX;
+      this.scroll.hasHorizontalScroll = this.scrollByX;
     } else {
-      this.scorll.refresh();
+      this.scroll.refresh();
     }
     //监听滚动位置
-    this.scorll.on('scroll', (position) => {
+    this.scroll.on('scroll', (position) => {
       this.$emit('scroll', position);
     });
 
-    // console.log(this.scorll);
-    this.scorll.refresh();
+    if (this.pullUpLoad) {
+      //3、监听上拉事件
+      this.scroll.on('pullingUp', () => {
+      this.$emit('pullingUp');
+    });
+    }
+
+    // console.log(this.scroll);
+    this.scroll.refresh();
   },
   methods: {
     scrollTo(x, y, time=500) {
@@ -80,6 +92,6 @@ export default {
 
 <style scoped>
 .wrapper {
-  height: calc(100%);
+  height: calc(100% - 50px);
 }
 </style>

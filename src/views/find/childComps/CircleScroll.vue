@@ -1,12 +1,14 @@
 <template>
   <scroll class="circle-scroll" :scrollByX="scrollByX">
     <div class="content">
-      <div v-for="(item, index) in circleBtns" 
+      <div
+        v-for="(item, index) in circleBtns"
         :key="item.id"
         @click.stop="circleClick(index)"
-        class="scroll-item">
+        class="scroll-item"
+      >
         <img v-lazy="item.iconUrl" />
-        <span>{{item.name}}</span>
+        <span>{{ item.name }}</span>
       </div>
     </div>
   </scroll>
@@ -37,20 +39,18 @@ export default {
   },
   methods: {
     circleClick(index) {
-      this.$emit('circleClick', index);
-      if (!this.$store.state.isLogin)
-        Toast.fail('请先登录');
-      else {
-        switch (index) {
-          case 0:
-            this.$router.replace('/dailyrecommend');
-            break;
-          case 1:
-            this.$router.replace('/songsquare');
-            break;
-          default:
-            break;
-        }
+      switch (index) {
+        case 0:
+          if (!this.$store.state.isLogin) Toast.fail('请先登录');
+          else this.$router.replace('/dailyrecommend');
+          break;
+        case 1:
+          break;
+        case 2:
+          this.$router.replace('/songsquare');
+          break;
+        default:
+          break;
       }
     },
   },
