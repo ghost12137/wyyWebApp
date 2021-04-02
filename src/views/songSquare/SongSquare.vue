@@ -10,7 +10,10 @@
       @pullingUp="loadMore"
     >
       <div class="song-content">
-        <song-item v-for="item in SongList" :key="item.id" :item="item" />
+        <song-item
+          v-for="item in SongList" 
+          :key="item.id" 
+          :item="item" />
       </div>
     </scroll>
   </div>
@@ -57,6 +60,7 @@ export default {
         this.getHotWorkList(this.titleList[index].name, 30, this.page);
       }
     },
+    //上拉加载更多
     loadMore() {
       if (this.currentIndex === 0) {
         this.getFineWorkList(0, 15, this.before);
@@ -71,7 +75,7 @@ export default {
     getSongTitleList() {
       getSongTitleList()
         .then(res => {
-          console.log("res of song title in songsquare: ", res);
+          // console.log("res of song title in songsquare: ", res);
           this.titleList = res.tags.slice(0, 5);
           let recommend = {
             name: '精品',
@@ -92,7 +96,7 @@ export default {
       });
       getFineWorkList(type, limit, before)
         .then(res => {
-          console.log('res of fine work in titlescroll: ', res);
+          // console.log('res of fine work in titlescroll: ', res);
           this.SongList.push(...res.playlists);
           this.before = res.lasttime;
           if (typeof (before) != 'undefined') {
@@ -115,7 +119,7 @@ export default {
       });
       getHotWorkList(cat, limit, offset)
         .then(res => {
-          console.log('res of hot work list in songsquare:', res);
+          // console.log('res of hot work list in songsquare:', res);
           this.SongList.push(...res.playlists);
           if (this.page == 0) {
             this.page = 30;

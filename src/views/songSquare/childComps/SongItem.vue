@@ -1,17 +1,18 @@
 <template>
-  <div class="song-item">
+  <div class="song-item" @click="goToSongOrder(item.id)">
     <div class="play">
-      <img src="~assets/img/musiclist/play.svg" alt="">
-      <span>{{itemPlayCount}}</span>
+      <img src="~assets/img/musiclist/play.svg" alt="" />
+      <span>{{ itemPlayCount }}</span>
     </div>
-    <img v-lazy="itemImage">
-    <span class="name">{{itemTitle}}</span>
+    <img v-lazy="itemImage" />
+    <span class="name">{{ itemTitle }}</span>
   </div>
 </template>
 
 <script>
+import { adjustCount } from "common/utils";
 export default {
-  name:'SongItem',
+  name: 'SongItem',
   props: {
     item: {
       type: Object,
@@ -22,13 +23,22 @@ export default {
   },
   computed: {
     itemPlayCount() {
-      return this.item.playCount;
+      return adjustCount(this.item.playCount);
     },
     itemImage() {
       return this.item.coverImgUrl;
     },
     itemTitle() {
       return this.item.name;
+    },
+  },
+  methods: {
+    /**
+     * 事件监听相关方法
+     */
+    //跳转到对应歌单详情
+    goToSongOrder(id) {
+      this.$router.push({path: '/songordermsg', query: {id}});
     },
   },
 }

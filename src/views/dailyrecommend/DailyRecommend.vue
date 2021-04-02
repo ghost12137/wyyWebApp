@@ -64,10 +64,8 @@ export default {
     contentScroll(position) {
       // console.log(this.$refs.playAll.offsetTop);
       if (Math.abs(position.y) > this.$refs.playAll.offsetTop) {
-        console.log(true);
         this.isFlow = true;
       } else {
-        console.log(false);
         this.isFlow = false;
       }
     },

@@ -92,6 +92,7 @@ export default {
 
 <style scoped>
 .wrapper {
-  height: calc(100% - 50px);
+  height: calc(100%);
+  position: relative;
 }
 </style>

@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { adjustCount } from "common/utils";
 export default {
   name:'MusicListItem',
   props: {
@@ -28,7 +29,11 @@ export default {
       return this.musicItem.uiElement.mainTitle.title;
     },
     itemPlayCount() {
-      return this.musicItem.resources!=null?this.musicItem.resources[0].resourceExtInfo.playCount:this.musicItem.creativeExtInfoVO.playCount;
+      if (this.musicItem.resources!=null) {
+        return adjustCount(this.musicItem.resources[0].resourceExtInfo.playCount);
+      } else {
+        return adjustCount(this.musicItem.creativeExtInfoVO.playCount);
+      }
     },
   },
 }
@@ -48,22 +53,24 @@ export default {
 }
 .play {
   position: absolute;
-  width: 63px;
+  padding: 5px 5px;
   height: 15px;
   background-color: rgba(150, 150, 150, 0.5);
-  margin-top: 25px;
-  margin-left: 50px;
+  /* margin-top: 25px;
+  margin-left: 50px; */
   border-radius: 7px;
   display: flex;
   font-size: 8px;
-  vertical-align: middle;
+  align-items: center;
   line-height: 15px;
   color: #fff;
+  left: 70px;
+  top: 30px;
 }
 .play img {
   width: 10px;
   height: 10px;
-  margin-top: 2px;
-  margin-left: 7px;
+  margin-top: 4px;
+  margin-right: 4px;
 }
 </style>
